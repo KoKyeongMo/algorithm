@@ -1,0 +1,98 @@
+#1316번
+#내가 쓴 코드(틀림)
+n = int(input())
+group_count = 0
+for _ in range(n):
+    a = input()
+    line_count = 1
+    list  = []
+    for j in range(len(a)):
+        if list.count(a[j]) ==0:
+            if a[j] == a[j+1]:
+                line_count +=1
+                list.append(a[j])
+            
+            else:
+                break
+            #동일한 문자가 얼마나 연속하는지 확인
+
+    if a.count(a[j]) == line_count:
+        group_count +=1
+        #연속하는 문자수와 총 문자수가 같은지 확인
+        
+print(group_count)
+
+#해답
+n = int(input())
+count = n
+for i in range(n):
+    a = input()
+    for j in range(len(a)-1):
+        if a[j] == a[j+1]:
+            pass                   #같은 문자가 연속되는 지점은 패스
+        elif a[j] in a[j+1:]:          #같은 문자 연속이 끊긴 시점에서 그 이후에 나타나는 같은 문자가 있을경우 그룹문자에서 제외함
+            count-=1
+            break                     #그룹문자인지 아닌지 한번만 확인되면 되므로 한 단어에서 count가 여러번 마이너스 되지 않도록 바로 break걸기
+print(count)
+
+
+
+#2941번
+#내가 쓴 코드(틀림)
+list = ['c=','c-','dz=','d-','lj','nj','s=','z=']
+
+word = input()
+
+for i in list:
+    if i in word:
+        word.replace(i,'0')
+   
+print(len(word))
+
+#해답
+croatia = ['c=', 'c-', 'dz=', 'd-', 'lj', 'nj', 's=', 'z=']
+word = input()
+
+for i in croatia :
+    word = word.replace(i, '*')
+print(len(word))
+
+# 해답과 내 답의 차이점:
+1. 불필요한 if문
+2. replace함수로 변화를 준 새 글자를 다른 변수에 지정하지 않았고 기존 word는 아무런 변화가 없었음
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
