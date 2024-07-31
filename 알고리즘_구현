@@ -63,8 +63,46 @@ print(len(word))
 
 
 
+#1920
+#내가 쓴 풀이(틀림)
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+
+n_list = list(map(int,input().split()))
+
+m = int(input())
+
+m_list = list(map(int,input().split()))
+
+for i in m_list:
+    if i in n_list:
+        print(1)
+    else:
+        print(0)
+
+#해답
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+
+n_set = set(map(int,input().split()))
+
+m = int(input())
+
+m_list = map(int,input().split())
 
 
+for i in m_list:
+    if i in n_set:
+        print(1)
+    else:
+        print(0)
+
+
+# m_list의 값들이 n_list에도 있는지만 보면되기에 n_list에 있는 값들은 중복이 될 필요가 없다. 즉 n_list는 set로 바꾸어주어 시간복잡도를 줄인다.
 
 
 
