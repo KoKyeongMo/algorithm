@@ -1,0 +1,107 @@
+#1764
+#내가 쓴 풀이
+
+n,m = map(int,input().split())
+n_list = []
+m_list = []
+name_list = []
+for i in range(n):
+    n_list.append(input())
+
+for j in range(m):
+    m_list.append(input())
+ 
+
+for k in range(n):
+    for x in range(m):
+        if n_list[k] == m_list[x]:
+            break
+
+    else:
+        name_list.append(n_list[k])    
+    
+print(len(name_list))
+    
+for a in name_list:
+    print(a)
+
+#해답
+
+n,m = map(int,input().split())
+n_set = set()
+m_set = set()  
+for i in range(n):
+    n_set.add(input())
+
+for j in range(m):
+    m_set.add(input())
+name_set = n_set & m_set                      
+    
+print(len(name_set))
+    
+for a in sorted(name_set):
+    print(a) 
+
+#list 보단 set 을 쓰면 교집합을 쉽게 구할수 있다
+#set는 중복을 허용하지 않는다(자동으로 중복이 되지않도록 설정해준다)
+#set는 add를 사용하고 list는 append 를 사용한다
+
+
+
+#2675
+#내가 쓴 풀이(틀림)
+
+t = int(input())
+for _ in range(t):
+    r,s = input().split()
+    r = int(r)
+    for i in range(s):
+        s[i] *=r                   
+        
+    print(s)
+
+#해답
+
+t = int(input())
+for _ in range(t):
+    r,s = input().split()
+    r = int(r)
+    result = ''
+    for i in range(len(s)):
+        result += s[i]*r
+        
+    print(result)
+
+#주의할점
+#1. 문자열 s는 range(s)로 사용할수 없다. range(len(s))가 되어야함
+#2. 문자열 s의 인덱스에 직접 접근하여 s를 변경할수 없다. s를 변화시킨 값을 의미할 새로운 변수를 만들어야함
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
