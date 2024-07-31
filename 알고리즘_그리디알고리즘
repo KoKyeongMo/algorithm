@@ -1,0 +1,38 @@
+#2839
+#내가 쓴 풀이(틀림)
+
+n = int(input())
+a = n//15
+
+if n%15 in [1,2,4,7]:
+    print(-1)
+
+elif n%15 in [3,5]:
+    print(a*3+1)
+elif n%15 in [6,8,10]:
+    print(a*3+2)
+elif n%15 in [9,11,13]:
+    print(a*3+3)
+elif n%15 in [12,14]:
+    print(a*3+4)
+else:
+    print(a*3)
+
+#해답
+
+n = int(input())
+
+a = n//5
+
+for i in range(a,-1,-1):          
+    if (n-5*i)%3 ==0:
+        print(i+(n-5*i)//3)
+        break
+else:
+    print(-1)
+
+#주의할점
+#경우의수가 몇개 없어보여도 일일이 경우를 따지기보다 경우를 판독하는 프로그램을 되도록 만들고자 하자
+#range함수를 쓸때 -1씩 i가 가게 하려면 range(a,b,c)에서 a가 b보다 커야함(a부터 b까지 -1씩 간다는 의미)
+
+
