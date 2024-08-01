@@ -73,6 +73,92 @@ print(prime_count)
 
 
 
+#1065
+#내가 쓴 풀이(맞음)
+
+n = int(input())
+count = n
+for num in range(1,n+1):
+    num_list = list(map(int,str(num)))
+    if len(num_list)-2>0:
+        for i in range(0,len(num_list)-2):
+            if num_list[i]-num_list[i+1] != num_list[i+1]-num_list[i+2]:
+                count-=1
+                break
+            
+print(count)
+
+#주의할점: list 이름을 list라고 하지 말기(오류가 발생할수 있음)
+
+
+
+#11047
+#내가 쓴 풀이(틀림)
+
+n,k = map(int,input().split())
+
+value_list = []
+
+for _ in range(n):
+    value_list.append(int(input()))
+    
+count = 0
+last = k
+for i in range(n-1,0,-1):
+    if value_list[i]>last:
+        continue
+    if last>0:
+        count += last//value_list[i]
+        last = k%value_list[i]
+    else:
+        break
+    
+print(count)
+
+
+#해답
+
+n,k = map(int,input().split())
+
+value_list = []
+
+for _ in range(n):
+    value_list.append(int(input()))
+    
+count = 0
+last = k
+for i in range(n-1,-1,-1):
+    if value_list[i]>last:
+        continue
+    if last>0:
+        count += last//value_list[i]
+        last = last%value_list[i]
+    else:
+        break
+    
+print(count)
+
+
+#주의할점: for문을 역순으로 진행할경우 i가 0까지 가게 하려면 range안에 가운데 수를 -1로 써야함 주의
+        : last 와 k 를 서로 헷갈리지 않도록 주의하기(for i 문 안에 변하게되는 값은 k가아니라 last뿐임)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
