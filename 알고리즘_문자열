@@ -79,7 +79,52 @@ for _ in range(t):
 
 
 
+#9012
+#내가 쓴 풀이(맞음)
 
+t = int(input())
+
+for _ in range(t):
+    case = input()
+    count = 0
+    for i in range(len(case)):
+        if case[i] == '(':
+            count += 1
+        elif case[i] == ')':
+            count-=1
+           
+        if count <0:
+            print('NO')
+            break
+        
+    else:
+        if count>0:
+            print('NO')
+        else:
+            print('YES')
+
+
+#10773
+#내가 쓴 풀이(맞음)
+
+import sys
+input = sys.stdin.readline
+
+
+k = int(input())
+num_list = []
+for i in range(k):
+    num = int(input())
+    if num !=0:
+        num_list.append(num)
+    else:
+        num_list.pop()
+        
+sum = 0
+for j in num_list:
+    sum += j
+
+print(sum)
 
 
 
