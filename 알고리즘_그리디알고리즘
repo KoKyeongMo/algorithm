@@ -36,3 +36,71 @@ else:
 #range함수를 쓸때 -1씩 i가 가게 하려면 range(a,b,c)에서 a가 b보다 커야함(a부터 b까지 -1씩 간다는 의미)
 
 
+
+#1931
+#내가 쓴 풀이
+
+n = int(input())
+time_list = []
+count = 0
+start_time = []
+end_time = []
+
+for i in range(n):
+    time = list(map(int,input().split()))
+    start_time.append(time[0])
+    end_time.append(time[1])
+    
+    
+for j in range(n):
+    if end_time[j] == end_time.min():
+        new_start_time = end_time[j]
+        count+=1
+
+    if start_time[j]<new_start_time:
+        del start_time[j]
+        del end_time[j]
+        
+    if new_start_time > end_time.max():
+        count-=1
+        break
+
+print(count)
+
+#해답
+
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+
+meetings = []
+
+for _ in range(n):
+    start,end = map(int,input().split())
+    meetings.append((start,end))
+
+meetings.sort(key=lambda x:(x[1],x[0]))
+
+
+count = 0
+new_start = 0
+for start,end in meetings:
+    if start>=new_start:
+        count+=1
+        new_start = end
+    
+print(count)
+
+#주의할점
+#1. 리스트내의 값을 특정 기준으로 정렬하는 sort함수 익히기
+#2. for 반복문에서 for start,end in meetings 와 같은 꼴 기억하기
+#3. lambda함수 사용법 익히기
+#4. key=를 이용하면 sort함수를 자기가 정한 기준으로 정렬시키게 만들수 있다.
+
+
+
+
+
+
+
