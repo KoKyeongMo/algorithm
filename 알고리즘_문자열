@@ -271,6 +271,49 @@ for i in wordlist:
 # set는 변경가능한 객체가 아니다. 다시 list로 바꿔준후 list를 정렬시켜야 한다.
 
 
+#11866
+#내가 쓴 풀이
+n,k = map(int,input().split())
+numlist = []
+for i in range(n):
+    numlist.append(i+1)
+num = k
+newlist = []
+for i in range(n):
+    while num>len(numlist):
+        num-=len(numlist)
+        numset = set(numlist)
+        newset = set(newlist)
+        numset-=newset
+        numlist = list(numset)
+    newlist.append(numlist[num-1])
+    num+=k
+
+print('<',end ='')
+print(newlist[0],end='')
+for i in range(n-1):
+    print(',',newlist[i+1],end='')
+print('>')
+
+#해답
+
+n,k = map(int,input().split())
+numlist = []
+for i in range(n):
+    numlist.append(i+1)
+num = 0
+newlist = []
+while len(numlist)!=0:                     #numlist가 완전히 빌때까지 반복되어야 하므로 while문을 사용하자
+    num+=k-1
+    num%=len(numlist)
+    newlist.append(numlist.pop(num))            #pop함수는 특정 인덱스의 값을 리스트에서 제거함과 동시에 그값을 반환하므로 한 리스트에서 제거하고 그값을 다른 리스트로 옮기는데에 유용하다
+    print(numlist,newlist)
+
+print('<',end ='')
+print(newlist[0],end='')
+for i in range(n-1):
+    print(',',newlist[i+1],end='')
+print('>')
 
 
 
