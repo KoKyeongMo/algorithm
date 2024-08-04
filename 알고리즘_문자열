@@ -126,19 +126,117 @@ for j in num_list:
 
 print(sum)
 
+#4949
+#내가 쓴 풀이(틀림)
+
+    sen_list = list(input())
+    a=0
+    b=0
+    count = 0
+    for i in sen_list:
+        if i == '[':
+            a+=1
+        elif i == ']':
+            a-=1
+        elif i == '(':
+            b+=1
+        elif i == ')':
+            b-=1
+            
+        if a<0:         
+            count+=1
+            break
+        if b<0:           
+            count+=1
+            break
+            
+    if a>0:
+        count+=1
+    if b>0:
+        count+=1
 
 
 
+#해답
+
+while True:
+    word=input()
+
+    stack=[] 
+    if word=='.':
+        break
+
+    for w in word:
+        if w=='(' or w=='[':
+            stack.append(w)
+        elif w==')':
+            if stack and stack[-1]=='(':                   # if stack[-1] == '('만 적으면 stack이 비어있을경우 indexError이 나게 된다. 따라서 먼저 stack이 비어있지 않은지 부터 확인해주어야 한다.
+                stack.pop()
+            else:
+                stack.append(w)
+                break
+        elif w==']':
+            if stack and stack[-1]=='[':             
+                stack.pop()
+            else:
+                stack.append(w)
+                break
+
+    if len(stack)==0:
+        print('yes')
+    else:
+        print('no')
 
 
+# 문장에서 필요한 문자인 괄호만 스택에 추가하고 제거하면서 괄호의 상태만 골라내어 판단할수있다.
+# 괄호문제는 결국 가장 안쪽에 있는 괄호부터 시작해서 여닫이가 마무리 되는지만 확인하면됨
 
 
+#2504
+#해답
+sen_list = list(input())
 
+stack = []
+answer = 0
+tmp = 1
 
+for i in range(len(sen_list)):
 
+    if bracket[i] == "(":
+        stack.append(sen_list[i])
+        tmp *= 2
 
+    elif bracket[i] == "[":
+        stack.append(sen_list[i])
+        tmp *= 3
 
+    elif sen_list[i] == ")":
+        if not stack or stack[-1] == "[":
+            answer = 0
+            break
+        if sen_list[i-1] == "(":
+            answer += tmp
+        stack.pop()
+        tmp //= 2
 
+    else:
+        if not stack or stack[-1] == "(":
+            answer = 0
+            break
+        if sen_list[i-1] == "[":
+            answer += tmp
+
+        stack.pop()
+        tmp //= 3
+
+if stack:
+    print(0)
+else:
+    print(answer)
+
+# 조건문이 많은 문제는 어디다가 정리를 좀 해두자
+# 괄호문제는 스택 이용하기
+# 경우의수 차근차근 정리해보기
 
 
 
