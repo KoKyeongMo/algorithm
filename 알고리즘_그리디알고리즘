@@ -99,6 +99,98 @@ print(count)
 #4. key=를 이용하면 sort함수를 자기가 정한 기준으로 정렬시키게 만들수 있다.
 
 
+#1018
+#내가 쓴 풀이
+
+n,m = map(int,input().split())
+chesslist = []
+for i in range(n):
+    row = list(input().split())
+    chesslist.append(row)
+
+countlist = []
+
+for y in range(0,n-8+1):
+    for x in range(0,m-8+1):
+        count = 0
+        for i in range(y,y+8):
+            for j in range(x,x+8):
+                if i%2 + j%2 ==1:
+                    if chesslist[i][j] != 'W':
+                        chesslist[i][j] = 'W'
+                        count+=1
+                else:
+                    if chesslist[i][j] != 'B':
+                        chesslist[i][j] = 'B'
+                        count+=1
+                    
+        if chesslist[y][x] =='W':
+            chesslist[y][x] == 'B'
+            count = n*m-count
+    
+        realcount = min(count,n*m-count)
+        
+        countlist.append(realcount)
+
+print(min(countlist))
+
+#문제점
+#1. list(input().split()) 이라고 하지않고 list(input())라고만 해도됨
+#2. 체스판이 한칸씩 옮겨갈때마다 count를 초기화 시키지 않음
+#3. 체스판을 옮길때마다 각 칸의 색깔을 실제로 바꿔버리면 안됨
+#4. n*m-count 가 아닌 8*8 - count 여야 한다
+
+
+#해답
+
+n,m = map(int,input().split())
+chesslist = []
+for i in range(n):
+    row = list(input())
+    chesslist.append(row)
+countlist = []
+
+for y in range(n-7):
+    for x in range(m-7):
+        count = 0                             #count를 초기화시키는 위치 변경
+        for i in range(y,y+8):
+            for j in range(x,x+8):
+                if i%2 + j%2 ==1:
+                    if chesslist[i][j] != 'W':
+                        count+=1                           #체스판의 색깔을 직접 바꿔버리는 항목을 그냥 삭제하면됨
+                else:
+                    if chesslist[i][j] != 'B':
+                        count+=1
+                    
+        if chesslist[y][x] =='W':
+            count = 64-count                           #n*m을 8*8로 변경
+        realcount = min(count,64-count
+        countlist.append(realcount)
+
+print(min(countlist))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
