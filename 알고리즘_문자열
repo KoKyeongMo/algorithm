@@ -307,7 +307,6 @@ while len(numlist)!=0:                     #numlist가 완전히 빌때까지 �
     num+=k-1
     num%=len(numlist)
     newlist.append(numlist.pop(num))            #pop함수는 특정 인덱스의 값을 리스트에서 제거함과 동시에 그값을 반환하므로 한 리스트에서 제거하고 그값을 다른 리스트로 옮기는데에 유용하다
-    print(numlist,newlist)
 
 print('<',end ='')
 print(newlist[0],end='')
