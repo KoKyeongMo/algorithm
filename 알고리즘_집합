@@ -1,0 +1,95 @@
+#11723
+#내가 쓴 코드(틀림)
+
+import sys
+input = sys.stdin.readline
+
+
+s = {}
+
+m = int(input())
+
+for i in range(m):
+    
+    o = input()
+    o = list(o.split())
+
+    if o[0] == 'add':
+        s.append(o[1])
+        
+    elif o[0] == 'remove':
+        s.pop()
+        
+    elif o[0] == 'check':
+        if o[1] in s:
+            print('1')
+            
+        else:
+            print('0')
+            
+    elif o[0] == 'toggle':
+        if o[1] in s:
+            s.remove(o[1])
+           
+        else:
+            s.append(o[1])
+            
+    elif o[0] == 'all':
+        s.clear()
+        num = 1
+        for _ in range(20):
+            s.append(num)
+            num+=1
+            
+    elif o[0] == 'empty':
+        s.clear()
+
+
+# 해답
+
+import sys
+input = sys.stdin.readline
+
+
+s = set()
+
+m = int(input())
+
+for i in range(m):
+    
+    o = input()
+    o = list(o.split())
+
+    if o[0] == 'add':
+        s.add(o[1])
+        
+    elif o[0] == 'remove':
+        s.remove(o[1])
+        
+    elif o[0] == 'check':
+        if o[1] in s:
+            print('1')
+            
+        else:
+            print('0')
+            
+    elif o[0] == 'toggle':
+        if o[1] in s:
+            s.remove(o[1])
+           
+        else:
+            s.add(o[1])
+            
+    elif o[0] == 'all':
+        s.clear()
+        num = 1
+        for _ in range(20):
+            s.add(num)
+            num+=1
+            
+    elif o[0] == 'empty':
+        s.clear()
+
+#1. remove 함수는 remove 할값이 집합에 없을경우 에러가 생김 -> discard() 를 사용하면 예외경우는 무시하므로 discard 함수 사용하기
+#2. 집합에서는 특정값을 추가할때 append가 아니라 add 함수를 사용해야함
+#3. s = {}를 쓰면 딕셔너리로 인식될수 있음. 집합을 정의할경우 s = set() 로 정의하기
