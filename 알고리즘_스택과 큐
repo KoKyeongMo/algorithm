@@ -116,6 +116,56 @@ for _ in range(n):
             print(-1)
 
 
+1874번 스택으로 수열 만들기
+
+해결책: 스택 자료형과 벡터 자료형을 이용해 push와 pop을 이용해서 스택을 만들면 된다.
+
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <cmath>
+#include <string>
+#include <stack>
+
+using namespace std;
+
+int main() {
+	int n, num = 1;
+	cin >> n;
+	vector<int> a(n);
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+	stack<int> st;
+	vector<char> rs;
+	
+	for (int i = 0; i < n; i++) {
+		int cur = a[i];
+		if (cur >= num) {
+			while (cur >= num) {
+				st.push(num);
+				num++;
+				rs.push_back('+');
+			}
+			st.pop();
+			rs.push_back('-');
+		}
+		else {
+			int x = st.top();
+			if (cur < x) {
+				cout << "NO";
+				return 0;
+			}
+			else {
+				st.pop();
+				rs.push_back('-');
+			}
+		}
+	}
+	for (int i=0;i<rs.size();i++){
+		cout << rs[i] << '\n';
+	}
+}
 
 
 
