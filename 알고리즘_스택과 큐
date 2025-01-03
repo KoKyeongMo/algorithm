@@ -167,7 +167,42 @@ int main() {
 	}
 }
 
+17298번 오큰수
 
+일일이 a[i]마다 그 오른쪽에 존재하는 모든수를 다 비교해 보는것은 시간복잡도가 O(N^2)이 된다. 따라서 스택을 이용한다. 
+스택을 이용할경우 a배열의 오른쪽부터 시작해 스택에 수를 저장한다.---> 각 a[i]의 오큰수를 찾을때마다 가장 마지막에 스택에 들어간 st.top()를 a[i]와 비교한다. ---> st.top()이 오큰수가 될수 있을때까지 st.pop() 하여 st.top()을 갈아끼운다. ---> 만약 st.top()>a[i]인 수가 처음 검출될경우 이것이 오큰수로 저장된다. 
+여기서 핵심은 모든 a[i]는 스택에 들어가거나 나오거나 한번씩만 하게되기에 시간복잡도가 O(N)이다.
+
+#include <iostream>
+#include <vector>
+#include <stack>
+
+using namespace std;
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+	int n;
+	cin >> n;
+	vector<int> a(n), ans(n, -1);
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+	stack<int> st;
+	for (int i = n - 1; i >= 0; i--) {
+		while (!st.empty() && st.top() <= a[i]) {
+			st.pop();
+		}
+		if (!st.empty()) {
+			ans[i] = st.top();
+		}
+		st.push(a[i]);
+	}
+	for (int i = 0; i < n; i++) {
+		cout << ans[i] << ' ';
+	}
+}
 
 
 
