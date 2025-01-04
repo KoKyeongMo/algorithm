@@ -1,0 +1,46 @@
+1620번 나는야 포켓몬 마스터 이다솜
+
+#include <iostream>
+#include <vector>
+#include <cctype>
+#include <string>
+#include <unordered_map>
+using namespace std;
+
+unordered_map<string, int> name;
+unordered_map<int, string> num;
+vector<string> q;
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+	int n, m;
+	cin >> n >> m;
+	string s;
+	for (int i = 1; i <= n; i++) {
+		cin >> s;
+		name.insert({ s,i });
+		num.insert({ i,s });
+	}
+	for (int i = 1; i <= m; i++) {
+		cin >> s;
+		q.push_back(s);
+	}
+	for (int i = 0; i < m; i++) {
+		if (isdigit(q[i][0]) == 1) {
+			int n = stoi(q[i]);
+			cout << num[n] << '\n';
+		}
+		else {
+			cout << name[q[i]] << '\n';
+		}
+	}
+}
+
+새롭게 알게된점:
+1. map, unordered_map함수를 이용해 파이썬의 딕셔너리처럼 쌍으로 묶인 배열을 사용할수 있다.
+이용할수 있는 함수에는 find, insert 등이 있다.
+2. isdigit함수를 통해 자료형이 숫자인지 아닌지를 판단할수 있다.
+3. stoi 함수를 이용해 자료형이 string 으로 되어있는 숫자를 int 형으로 바꿔준다.
+4. 벡터로 선언한 변수는 선언할때 q; 처럼 변수 이름만 쓸경우 push_back 형태로 넣어줄수 있고 q(m); 처럼 바로 크기를 나타내줄 경우 cin>> q[i]; 처럼 넣을 수 있다.
