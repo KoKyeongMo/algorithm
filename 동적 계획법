@@ -34,3 +34,35 @@ int main(){
     }
     cout<<sum%num;
 }
+
+2579번 계단 오르기
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+
+using namespace std;
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+	int n;
+	int es[301];
+	int dp[301];
+	cin >> n;
+	for (int i = 1; i <= n; i++) {
+		cin >> es[i];
+	}
+	dp[1] = es[1];
+	dp[2] = es[1] + es[2];
+	dp[3] = max(es[1] + es[3], es[2] + es[3]);
+	for (int i = 4; i <= n; i++) {
+		dp[i] = max(dp[i - 2] + es[i], dp[i - 3] + es[i - 1] + es[i]);
+	}
+	cout << dp[n];
+}
+
+해결법 :
+동적 계획법을 풀때는 dp[] 배열을 만들고 점화식을 찾아내어 dp를 이용한 점화식을 만들생각을 해야됨. 
