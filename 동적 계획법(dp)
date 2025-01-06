@@ -66,3 +66,48 @@ int main() {
 
 해결법 :
 동적 계획법을 풀때는 dp[] 배열을 만들고 점화식을 찾아내어 dp를 이용한 점화식을 만들생각을 해야됨. 
+
+17626번 Four Squares
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+#include <unordered_map>
+
+using namespace std;
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+
+	int n;
+	cin >> n;
+	int dp[50001] = { 0 };
+
+	for (int i = 1; i*i<=n; i++) {
+		dp[i * i] = 1;
+	}
+
+	for (int i = 2; i <= n; i++) {
+		int min=10000;
+		if (dp[i] == 1) {
+			continue;
+		}
+		for (int j = 1; j <= sqrt(i); j++) {
+			int tp = dp[j*j] + dp[i - j*j];
+			if (min>tp) {
+				min = tp;
+			}
+		}
+		dp[i] = min;
+	}
+	cout << dp[n];
+
+}
+
+해결법 : 
+각 i 마다 최소 몇개의 제곱수 합으로 나타나지는지를 dp값으로 둔다. 즉 모든 제곱수는 dp를 1로 설정, 나머지 i 들의 dp는 dp[제곱수] + dp[i-제곱수] 의 경우들중에 가장 작은 경우를 따지면 된다.
+
+
