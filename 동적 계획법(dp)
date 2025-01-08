@@ -111,3 +111,41 @@ int main() {
 각 i 마다 최소 몇개의 제곱수 합으로 나타나지는지를 dp값으로 둔다. 즉 모든 제곱수는 dp를 1로 설정, 나머지 i 들의 dp는 dp[제곱수] + dp[i-제곱수] 의 경우들중에 가장 작은 경우를 따지면 된다.
 
 
+12865번 평범한 배낭
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+#include <unordered_map>
+#include <cmath>
+
+using namespace std;
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+	int n, k, w[101], v[101], dp[101][100001];
+	cin >> n >> k;
+	for (int i = 1; i <= n; i++) {
+		cin >> w[i] >> v[i];
+	}
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= k; j++) {
+			if (j >= w[i]) {
+				dp[i][j] = max(dp[i - 1][j], dp[i-1][j - w[i]] + v[i]);
+			}
+			else dp[i][j] = dp[i - 1][j];
+		}
+	}
+	
+	cout << dp[n][k];
+
+}
+
+해결법 :
+물건을 순서대로 i개만큼 돌면서 해당 i번째 물건의 차례마다 k 용량이 될때까지 1부터 k까지의 각 용량의 경우마다 물건 i를 포함하는것이 이득일지 아닐지를 판단함
+
+새롭게 알게된 점: 
+배열의 크기가 너무 클경우 전역변수로 선언하는것이 좋다. 지역변수로 선언될경우 스택 오버플로우가 날수 있다. 애초에 전역변수로 선언하는 습관을 들이자.
