@@ -149,3 +149,37 @@ int main() {
 
 새롭게 알게된 점: 
 배열의 크기가 너무 클경우 전역변수로 선언하는것이 좋다. 지역변수로 선언될경우 스택 오버플로우가 날수 있다. 애초에 전역변수로 선언하는 습관을 들이자.
+
+2293번 동전 1
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int n, k, v[101], dp[10001] = { 0 };
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    cin >> n >> k;
+    for (int i = 1; i <= n; i++) {
+        cin >> v[i];
+    }
+
+    sort(v + 1, v + n + 1);
+
+    dp[0] = 1; 
+    for (int i = 1; i <= n; i++) {
+        for (int j = v[i]; j <=k; j++) {
+            dp[j] += dp[j - v[i]];
+        }
+    }
+
+    cout << dp[k];
+}
+
+해결법 : 
+0부터 k까지의 경우마다 나올수 있는 경우의수를 dp[i]라 두고 어떤 주기로 dp[]가 증가 하는지를 파악한다.
