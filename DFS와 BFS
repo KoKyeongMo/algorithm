@@ -1,0 +1,45 @@
+11724번 연결 요소의 개수
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <stack>
+using namespace std;
+
+int n, m, s, e;
+vector<vector<int>> a;
+vector<bool> v;
+
+void dfs(int k) {
+	v[k] = true;
+	for (int i = 0; i < a[k].size(); i++) {
+		int x = a[k][i];
+		if (v[x] == false) {
+			dfs(x);
+		}
+	}
+}
+
+int main(){
+	cin >> n>> m;
+	a.resize(n+1);
+	v = vector<bool>(n + 1, false);
+	for (int i = 0; i < m; i++) {
+		cin >> s >> e;
+		a[s].push_back(e);
+		a[e].push_back(s);
+	}
+	int cnt = 0;
+	for (int i = 1; i <= n; i++) {
+		if (v[i] == false) {
+			cnt++;
+			dfs(i);
+		}
+	}
+	cout << cnt;
+
+}
+
+새롭게 알게된 점: 
+a.resize(n+1)라는 함수를 통해 a벡터를 n+1의 크기로 재정의 할수 있다.
+bool 형인 벡터 v를 모두 false로 초기화 하려면 v = vector<bool>(n + 1, false); 로 쓸수 있다.
