@@ -43,3 +43,58 @@ int main(){
 새롭게 알게된 점: 
 a.resize(n+1)라는 함수를 통해 a벡터를 n+1의 크기로 재정의 할수 있다.
 bool 형인 벡터 v를 모두 false로 초기화 하려면 v = vector<bool>(n + 1, false); 로 쓸수 있다.
+
+
+2023번 신기한 소수찾기
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+#include <cmath>
+#include <string>
+using namespace std;
+
+int n;
+
+int isp(int num) {
+    for (int i = 2; i < num / 2 + 1; i++) {
+        if (num % i == 0) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+void dfs(int number) {
+    if (to_string(number).size() == n) {
+        cout << number<<'\n';
+    }
+    else {
+        for (int i = 1; i < 10; i++) {
+            if (i % 2 == 0) {
+                continue;
+            }
+            if (isp(number * 10 + i)) {
+                dfs(number*10+i);
+            }
+        }
+    }
+}
+
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    cin >> n;
+    dfs(2);
+    dfs(3);
+    dfs(5);
+    dfs(7);
+}
+
+새롭게 알게된 점:
+1. int를 string으로 바꾸는 함수는 <string> 라이브러리의 to_string()함수를 쓰면 된다.
+2. dfs 에서는 탐색을 재귀함수를 이용할수 있음을 인지하여야 한다.
