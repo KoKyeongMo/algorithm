@@ -162,23 +162,36 @@ int main() {
     cout.tie(NULL);
 
     cin >> m >> n;
-    a[1] = 1;
-    a[2] = 0;
-    a[3] = 0;
+    a[1] = 0;
     for (int i = 2; i <= n; i++) {
-        for (int j = 2; i * j <= n; j++) {
-            a[i * j] = 1;
+        a[i] = 1;
+    }
+    for (int i = 2; i*i <= n; i++) {
+        if(a[i]){
+            for (int j = i * i; j <= n; j += i) {
+                a[j] = 0;
+            }
         }
     }
     for (int i = m; i <= n; i++) {
-        if (a[i] == 0) {
+        if (a[i] == 1) {
             cout << i << '\n';
         }
     }
 }
 
 새롭게 알게된 점:
-1. 그냥 에라토스테네스의 체 안쓰고 모든 수를 각각 고려해볼수 있는지 생각해보기
+1. a[1] = 0;
+    for (int i = 2; i <= n; i++) {
+        a[i] = 1;
+    }
+    for (int i = 2; i*i <= n; i++) {
+        if(a[i]){
+            for (int j = i * i; j <= n; j += i) {
+                a[j] = 0;
+            }
+        }
+    }                이 형태는 에라토스테네스의 체를 구하는 코드로 잘 이해하고 외워두자.
 
 
 
